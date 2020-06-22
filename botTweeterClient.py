@@ -52,7 +52,10 @@ class StdOutListener(StreamListener):
         if data == "Err":
             print ("------------------------ERROR on_data -------------------")
         elif api:
+            # 전달된 데이터를 기반으로 관련 정보(ID,트윗 내용등) 뽑아내기
             msg = Massage.parseMassage(data)
+            # 형태소 분석해서 메시지 치환하기
+            msg.text=TweetParser.parseFromOkt(msg.text)
             # 관리자외의 사람은 : 명령과 트윗조작 명령을 내릴수없으며 트윗조작명령에 대해선 보고한다.
             # 트윗 보낸자가 관리자가 아닐경우 명령어 인식을 할수없다.
             if admin_screen_name == msg.screen_name:

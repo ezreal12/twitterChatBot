@@ -1,3 +1,7 @@
+from konlpy.tag import Okt
+
+okt = Okt()
+
 def encodeTweetData(data):
     try:
         data = data.encode('utf-8')
@@ -6,6 +10,12 @@ def encodeTweetData(data):
         return "Err"
 
     return data
+
+# 입력된 텍스트를 Okt로 형태소 분석되어 분리된 문자로 리턴하기
+def parseFromOkt(text):
+    str = okt.morphs(text)
+    result = ' '.join(str)
+    return result
 
 # 프로토콜에 쓰여진대로 봇의 특수문자를 처리하기위한 함수
 # 트윗 조작 후 처리 프로토콜 : 트위터의 조작 후 처리 보고를 표현하는 프로토콜
