@@ -26,11 +26,11 @@ global api
 
 # CODET01 = 최근 트윗 제거
 # CODET02 = 관리자가 아닌데 명령해서 거절트윗
-def controlTweet(tweetStatusMsg):
+def controlTweet(tweetStatusMsg,screen_name):
     print ("controlTweet -------- tweetStatusMsg = {}".format(tweetStatusMsg))
     if tweetStatusMsg == "CODET02":
         # CODET02 맞는 대사를 매칭해서 말한다.
-        botTweeterAPI.sendBotAndTweetRespone(api, "CODET02")
+        botTweeterAPI.sendBotAndTweetRespone(api, "CODET02",screen_name)
     if tweetStatusMsg == "CODET01":
         botTweeterAPI.removeAllTweet(api,True)
         print("removeAllTweet")
@@ -65,10 +65,10 @@ class StdOutListener(StreamListener):
 
             # 조작에 관한 내용이 아니면 봇한테 전송
             if tweetStatusMsg == "null":
-                botTweeterAPI.sendBotAndTweetRespone(api,msg.text)
+                botTweeterAPI.sendBotAndTweetRespone(api,msg.text,msg.screen_name)
             # 조작에 관한 내용이면 해당 프로세스 실행함
             else:
-                controlTweet(tweetStatusMsg)
+                controlTweet(tweetStatusMsg,msg.screen_name)
         return True
 
     def on_error(self, status):

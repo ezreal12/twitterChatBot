@@ -9,18 +9,23 @@ import tweepy
 import TweetParser
 
 # 트윗 전송하기 msg = 트윗에 담을 메시지
+#screen_name = 트윗을 보낸사람
 # 리턴으로 봇의 응답을 담음
 # 1. 메시지가 null이 아닌지 검사한다.
 # 2. 메시지가 null이 아니면 botTweeterAPI를 통해 소켓 통신으로 봇 서버에 메시지를 전달한다.
 # 3. 전달한 메시지의 대한 답장을 가져온다.
 # 4. 가져온 답장을 트위터에 그대로 적는다.
-def sendBotAndTweetRespone(api,msg):
+#+ 트윗을 보낸 사람의 ID 정보가 있으면 앞에 태그해서 트위터에 적는다. ex) @screen_name 트윗내용
+def sendBotAndTweetRespone(api,msg,screen_name=None):
     if msg != "null":
         # 주의 : 임시로 포트번호 1023으로 바꿨음
         result = sendAndReceiveChatScriptMsg("Siu", "Sensiki", msg, '127.0.0.1', 1023)
         result = TweetParser.parseBotScriptProtocol(result)
         print("send = {}".format(msg))
         print("result = {}".format(result))
+        # + 트윗을 보낸 사람의 ID 정보가 있으면 앞에 태그해서 트위터에 적는다.
+        if (screen_name!=None):
+            result="@"+screen_name+" "+result
         updateStatusOnWrapper(api,result)
         return result
     else:
@@ -30,28 +35,32 @@ def sendBotAndTweetRespone(api,msg):
 
 # isRespone : 트윗을 지우고 답장 트윗을 보낼지 말지에 대한 설정 True이면 삭제 후 보고트윗을 보냄
 # 에러로 인한 처리가 아닌 사용자 명령으로 삭제처리를 했을때 주로 보고함
-def removeAllTweet(api,isRespone=False):
+def removeAllTweet(api,isRespone=False,screen_name=None):
     for status in tweepy.Cursor(api.user_timeline).items():
         try:
             api.destroy_status(status.id)
             # isRespone이 True일시 삭제 완료 텍스트를 봇한테 받아와서 트윗작성함
             if isRespone:
                 # 봇한테 CODET01로 말을 걸면 CODET01에 맞는 대사를 매칭해서 말한다.
-                sendBotAndTweetRespone(api, "CODET01")
+                if(screen_name!=None):
+                    sendBotAndTweetRespone(api, "CODET01",screen_name)
+                else :
+                    sendBotAndTweetRespone(api, "CODET01")
         except:
             pass
 
 # 트윗 전송시 사용하는 Wrapper 함수
 # 모든 트윗 전송시에는 반드시 이 함수를 거칠것 (디버깅 편의 및 버그방지)
 # 트윗 전송 및 에러처리 까지만 할것
-def updateStatusOnWrapper(api,result):
+# text = 트윗으로 작성할 메시지
+def updateStatusOnWrapper(api,text):
     try:
-        api.update_status(result)
+        api.update_status(text)
     # code 170 : Missing required parameter: status 에러가 아직 미해결
     except tweepy.TweepError as error:
         if error.api_code == 187:
             removeAllTweet(api)
-            updateStatusOnWrapper(api,result)
+            updateStatusOnWrapper(api,text)
             print(error)
         else:
             updateStatusOnWrapper(api, error)
