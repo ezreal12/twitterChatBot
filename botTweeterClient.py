@@ -53,11 +53,7 @@ class StdOutListener(StreamListener):
     """ A listener handles tweets that are received from the stream.
     This is a basic listener that just prints received tweets to stdout.
     """
-    #a = a.decode('cp949').encode('utf-8')
-    #line = buf.read_line()
-    #next_status_obj = buf.read_len(length)
-    #            if self.running and next_status_obj:
-    #            self._data(next_status_obj)
+
     # 데이터는 단순한 문자열이고 파싱이 필요함
     # 파싱  후 text를 뽑아내서 트위터에 써보기
     def on_data(self, data):

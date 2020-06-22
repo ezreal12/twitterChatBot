@@ -20,7 +20,12 @@ def sendBotAndTweetRespone(api,text,msg=None):
     if text != "null":
         # 주의 : 임시로 포트번호 1023으로 바꿨음
         result = sendAndReceiveChatScriptMsg("Siu", "Sensiki", text, '127.0.0.1', 1023)
-        result = TweetParser.parseBotScriptProtocol(result)
+
+        if(msg!=None):
+            result = TweetParser.parseBotScriptProtocol(result,msg.name)
+        else:
+            result = TweetParser.parseBotScriptProtocol(result)
+
         print("send = {}".format(text))
         print("result = {}".format(result))
         # + 트윗을 보낸 사람의 ID 정보가 있으면 앞에 태그해서 트위터에 적는다.

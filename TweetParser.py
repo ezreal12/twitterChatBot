@@ -23,10 +23,13 @@ def parseFromOkt(text):
 # CODES01 = (
 # CODES02 = )
 # CODET01 = 삭제 (트윗 조작 후 처리 프로토콜)
-def parseBotScriptProtocol(data):
+# CODEU01 = 스크립트에서 유저 이름을 나타내는것 : 주의 : name은 None일수있음 체크필수
+def parseBotScriptProtocol(data,name=None):
     data = data.replace("CODES01","(")
     data = data.replace("CODES02",")")
     data = data.replace("CODET01", "삭제")
+    if(name!=None):
+        data = data.replace("CODEU01", name)
     return data
 # 사용자가 봇한테 건네는 메시지를 먼저 가져와서
 # 트위터에 사용하는 특수 기능을 요구하는 내용인지 확인함
