@@ -1,0 +1,33 @@
+﻿
+topic: ~INTRODUCTIONS (~emogoodbye ~emohello ~emohowzit name here )
+
+#!x will match on every return start of a conversation 
+t: ( %input<%userfirstline %input>0 ) 
+	^keep()  
+	[Welcome back] [Hello, again.][Glad you came back.][Hi.][Hi, again.]
+
+#!x matches every time on startup of a new conversation
+t: ( %input<%userfirstline ) 
+	^keep()   
+	Welcome to ChatScript.
+
+#!x issued only once, then erased
+t: Have you been here before?
+	#! yes
+	a: (~yes) Welcome back!
+	#! no
+	a: (~no) Then welcome to your first time.
+
+#! what is your name 
+u: ( what is your name ) 제피 퍼스트버전이야!.
+
+#! 나는 시우 
+u: ( 나는 시우 ) 반가워 시우!.
+
+
+#! 너의 이름은 
+u: ( 너의 이름은 ) 제피!.
+
+#! hi im siu 
+u: ( hi im siu  ) 반가워 시우 하이하이!.
+

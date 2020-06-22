@@ -1,0 +1,26 @@
+1. sae 학부의 모든 교수에 관한 지식과 답변
+
+4. 시간 물어보기
+5. 내 이름 말하기와 내 이름 물어보기
+
+3. 기타 일상에 관한 지식과 답변
+- 오늘 뭐했어?
+- 뭐먹었어?
+- 
+
+
+
+topic: ~you keep repeat [너의 너 니]
+topic: ~me keep repeat [나는]
+topic: ~Hello keep repeat [안녕하세요 안녕]
+
+topic: ~자기소개 (~you ~me ~Hello)
+
+u: ( ~you 이름 ) keep() repeat() 안녕하세요. 제 이름은 제피 1호입니다.
+
+u: ( ~Hello ) keep() repeat() 반갑습니다. 
+
+
+
+
+concept: ~학교건물 keep repeat [승리관 샬롬관 우원관 천은관 심전관 예술관 본관 도서관 이공관 교육관 인문사회관 목양관 후생관 경천관]

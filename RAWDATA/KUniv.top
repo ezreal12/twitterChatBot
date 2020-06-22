@@ -1,0 +1,34 @@
+concept: ~학교건물 keep repeat [승리관 샬롬관 우원관 천은관 심전관 예술관 본관 도서관 이공관 교육관 인문사회관 목양관 후생관 경천관]
+concept: ~교수님 [안영화 조승호 김태권 양형규 양재형 강현우 안정호 주영도 배성근 최권택 김종현]
+topic: ~학교 (~교수님)
+concept: ~정보 (프로필 정보)
+topic: ~교수님소개 keep repeat (~교수님)
+u: (안영화 ~정보) keep() repeat() 전화번호 : 031-280-3756 위치 : 이공관201 이메일 : yhan@kangnam.ac.kr
+u: (안영화) keep() repeat() 전자계산학을 전문으로 하시는 컴퓨터공학 교수님이십니다. 
+u: (조승호 ~정보) keep() repeat() 전화번호 : 031-280-3758 위치 : 이공관512 이메일 : shcho@kangnam.ac.kr
+u: (조승호) keep() repeat() 운영체제를 전문으로 하시는 컴퓨터공학 교수님이십니다. 
+u: (김태권 ~정보) keep() repeat() 전화번호 : 031-280-3759 위치 : 이공관517 이메일 : ktg@kangnam.ac.kr
+u: (김태권) keep() repeat() 데이터베이스를 전문으로 하시는 컴퓨터공학 교수님이십니다. 
+u: (양형규 ~정보) keep() repeat() 전화번호 : 031-280-3760 위치 : 이공관521 이메일 : hkyang@kangnam.ac.kr
+u: (양형규) keep() repeat() 정보공학을 전문으로 하시는 미디어정보공학 교수님이십니다. 
+u: (양재형 ~정보) keep() repeat() 전화번호 : 031-280-3757 위치 : 이공관519 이메일 : jhyang@kangnam.ac.kr
+u: (양재형) keep() repeat() 프로그래밍언어를 전문으로 하시는 컴퓨터공학 교수님이십니다. 
+u: (강현우 ~정보) keep() repeat() 전화번호 : 031-280-3755 위치 : 이공관522 이메일 : hwkang@kangnam.ac.kr
+u: (강현우) keep() repeat() 디지털신호처리를 전문으로 하시는 미디어정보공학 교수님이십니다. 
+u: (안정호 ~정보) keep() repeat() 전화번호 : 031-280-3661 위치 : 경천관404 이메일 : jungho@kangnam.ac.kr
+u: (안정호) keep() repeat() 멀티미디어응용을 전문으로 하시는 미디어정보공학 교수님이십니다. 
+u: (주영도 ~정보) keep() repeat() 전화번호 : 031-280-3699 위치 : 경천관508 이메일 : ydjoo@kangnam.ac.kr
+u: (주영도) keep() repeat() 컴퓨터과학및공학을 전문으로 하시는 컴퓨터공학 교수님이십니다. 
+u: (배성근 ~정보) keep() repeat() 전화번호 : 031-280-3659 위치 : 경천관402-1 이메일 : sgbae@kangnam.ac.kr
+u: (배성근) keep() repeat() 통신 및 신호처리,임베디드 시스템을 전문으로 하시는 소프트웨어 교수님이십니다. 
+u: (최권택 ~정보) keep() repeat() 전화번호 : 031-280-3660 위치 : 경천관205-1A 이메일 : kwontaeg.choi@kangnam.ac.kr
+u: (최권택) keep() repeat() 가상현실 또는 프로그래밍을 전문으로 하시는 가상현실전공 교수님이십니다. 
+u: (김종현 ~정보) keep() repeat() 전화번호 : 031-280-3664 위치 : 경천관403-2 이메일 : jonghyunkim@kangnam.ac.kr
+u: (김종현) keep() repeat() 컴퓨터그래픽스를 전문으로 하시는 컴퓨터공학 교수님이십니다. 
+
+
+topic: ~시간질의 keep repeat (몇시 시간 요일 며칠 몇달 올해 날짜 몇년)
+topic: ~시간 keep repeat (~시간질의)
+u: ( [몇시 시간] ) 지금 %hour : %minute 이에요
+u: ( 오늘 * [요일 며칠 날짜] ) 오늘은 %monthname %day %date 입니다
+u: ( [몇년] ) 올해는 %year 입니다

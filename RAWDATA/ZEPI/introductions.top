@@ -1,0 +1,60 @@
+﻿concept: ~교수님 [안영화 조승호 김태권 양형규 양재형 강현우 안정호 주영도 배성근 최권택 김종현]
+concept: ~사용자 [희수 박희수 철수 김철수 영희 김영희]
+topic: ~학교 (~교수님)
+concept: ~정보 (프로필 정보)
+topic: ~교수님소개 keep repeat (~교수님)
+u: (<<안영화 ~정보>>) keep() repeat() 전화번호 : 031-280-3756 위치 : 이공관201 이메일 : yhan@kangnam.ac.kr
+u: (안영화) keep() repeat() 전자계산학을 전문으로 하시는 컴퓨터공학 교수님이십니다. 
+u: (<<조승호 ~정보>>) keep() repeat() 전화번호 : 031-280-3758 위치 : 이공관512 이메일 : shcho@kangnam.ac.kr
+u: (조승호) keep() repeat() 운영체제를 전문으로 하시는 컴퓨터공학 교수님이십니다. 
+u: (<<김태권 ~정보>>) keep() repeat() 전화번호 : 031-280-3759 위치 : 이공관517 이메일 : ktg@kangnam.ac.kr
+u: (김태권) keep() repeat() 데이터베이스를 전문으로 하시는 컴퓨터공학 교수님이십니다. 
+u: (<<양형규 ~정보>>) keep() repeat() 전화번호 : 031-280-3760 위치 : 이공관521 이메일 : hkyang@kangnam.ac.kr
+u: (양형규) keep() repeat() 정보공학을 전문으로 하시는 미디어정보공학 교수님이십니다. 
+u: (<<양재형 ~정보>>) keep() repeat() 전화번호 : 031-280-3757 위치 : 이공관519 이메일 : jhyang@kangnam.ac.kr
+u: (양재형) keep() repeat() 프로그래밍언어를 전문으로 하시는 컴퓨터공학 교수님이십니다. 
+u: (<<강현우 ~정보>>) keep() repeat() 전화번호 : 031-280-3755 위치 : 이공관522 이메일 : hwkang@kangnam.ac.kr
+u: (강현우) keep() repeat() 디지털신호처리를 전문으로 하시는 미디어정보공학 교수님이십니다. 
+u: (<<안정호 ~정보>>) keep() repeat() 전화번호 : 031-280-3661 위치 : 경천관404 이메일 : jungho@kangnam.ac.kr
+u: (안정호) keep() repeat() 멀티미디어응용을 전문으로 하시는 미디어정보공학 교수님이십니다. 
+u: (<<주영도 ~정보>>) keep() repeat() 전화번호 : 031-280-3699 위치 : 경천관508 이메일 : ydjoo@kangnam.ac.kr
+u: (주영도) keep() repeat() 컴퓨터과학및공학을 전문으로 하시는 컴퓨터공학 교수님이십니다. 
+u: (<<배성근 ~정보>>) keep() repeat() 전화번호 : 031-280-3659 위치 : 경천관402-1 이메일 : sgbae@kangnam.ac.kr
+u: (배성근) keep() repeat() 통신 및 신호처리,임베디드 시스템을 전문으로 하시는 소프트웨어 교수님이십니다. 
+u: (<<최권택 ~정보>>) keep() repeat() 전화번호 : 031-280-3660 위치 : 경천관205-1A 이메일 : kwontaeg.choi@kangnam.ac.kr
+u: (최권택) keep() repeat() 가상현실 또는 프로그래밍을 전문으로 하시는 가상현실전공 교수님이십니다. 
+u: (<<김종현 ~정보>>) keep() repeat() 전화번호 : 031-280-3664 위치 : 경천관403-2 이메일 : jonghyunkim@kangnam.ac.kr
+u: (김종현) keep() repeat() 컴퓨터그래픽스를 전문으로 하시는 컴퓨터공학 교수님이십니다. 
+
+
+topic: ~시간질의 keep repeat (몇시 시간 요일 며칠 몇달 올해 날짜 몇년)
+topic: ~시간 keep repeat (~시간질의)
+u: ( [몇시* 시간] ) keep() repeat() 지금 %hour : %minute 이에요
+u: ( 오늘 * [요일* 며칠* 날짜*] ) keep() repeat() 오늘은 %monthname %day %date 입니다
+u: ( [몇년*] ) keep() repeat() 올해는 %year 입니다
+
+topic: ~you keep repeat [너의 너 니]
+topic: ~myNameIs keep repeat [나는 난 내이름은]
+topic: ~Hello keep repeat [안녕하세요 안녕]
+topic: ~talkMyName keep repeat [아니 알고있어 알고있니 모르니 말해줄래 얘기해줘 말해 알아]
+topic: ~자기소개 (~you ~Hello)
+
+u: ( ~you 이름 ) keep() repeat() 안녕하세요. 제 이름은 제피 1호입니다.
+
+u: ( ~Hello ) keep() repeat() 반갑습니다. 
+
+
+topic: ~일상 (오늘 뭐)
+
+u: (오늘* * 뭐 했어) keep() repeat() 오늘은 하루종일 주인님을 기다렸습니다.
+
+u: (오늘* * 뭐 먹었어) keep() repeat() 마라탕을 먹었습니다. 기계가 먹어도 괜찮았을까요?
+
+
+topic: ~이름기억 (~myNameIs)
+
+u: (~myNameIs _*) keep() repeat() _0 반갑습니다. $name=_0 $insik=1
+
+u: (내* 이름* ~talkMyName) keep() repeat() if ($insik == 1) {$name 입니다.} else {주인님의 이름을 들은적이 없습니다.} 
+# 주인 이름 인식 안시키고 너의 주인은 키워드 금지
+u: (~you * 주인은 _*) keep() repeat() if (_0 == $name) {맞습니다. 제 주인은 $name 입니다.} else if (!$insik) {저는 아직 제 주인님을 모릅니다.} else {그분은 제 주인이 아닙니다.}

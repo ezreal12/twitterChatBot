@@ -1,0 +1,10 @@
+﻿topic: ~tweetEvent repeat [ CODET01 CODET02 ]
+
+u: ( CODET01 ) keep() repeat() [시우, CODET01작업 처리했어요.]
+
+u: ( CODET02 ) keep() repeat() [죄송해요. 시우 이외의 말은 들을 수 없어요.]
+
+topic: ~timeTweetEvent repeat [ EVENTTWEETCODE01 ]
+
+u: ( EVENTTWEETCODE01 ) keep() repeat() [방금 당신을 닮은 강아지를 봤어요.] [CODES01이번 연구주제는 뭐가 좋을까..CODES02] [검술과 마법만큼 익숙한건 없지만 연금술에도 흥미가 깊어요.] [레몬파이 먹고싶어요.]
+

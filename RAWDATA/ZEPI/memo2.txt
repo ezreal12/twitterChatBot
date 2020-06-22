@@ -1,0 +1,14 @@
+do you like siu or TTTT
+
+do you like test or com
+
+I want to go * to siusiu
+
+
+u: (do you like _* or _*) keep() repeat() I don¡¯t like ¡®_0 so I guess that means I prefer ¡®_1. 
+
+
+
+topic: ~test (~me do you like)
+
+u: (do you like _* or _*) keep() repeat() I don¡¯t like ¡®_0 so I guess that means I prefer ¡®_1. 

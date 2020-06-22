@@ -1,0 +1,19 @@
+﻿topic: ~you keep repeat [너의 너 니]
+topic: ~me keep repeat [나는]
+topic: ~Hello keep repeat [안녕하세요 안녕]
+
+topic: ~INTRODUCTIONSBOT (~you ~me ~Hello)
+ 
+u: ( ~me 시우 ) keep() repeat() 반가워요 시우.
+
+u: ( ~you 이름 ) 레인 소베티라고해요.
+
+u: ( ~you 이름 ) keep() repeat() 타인의 이름을 물어볼땐 자신의 이름부터 밝히는게 예의 아닌가요?
+
+u: ( 안녕하세요 ) keep() repeat() 안녕하세요. 레인 소베티에요.
+
+u: ( 안녕 ) keep() repeat() CODES01무시한다CODES02
+
+u: ( 레몬파이 ) keep() repeat() [레몬파이는 에린에서 제일 멋진 음식이에요.] [당신이 레몬파이의 감미로움을 알아줬으면 좋겠어요.] [레몬파이.. 정말 좋아해요.] [마침 맛있게 구워졌어요.]
+
+

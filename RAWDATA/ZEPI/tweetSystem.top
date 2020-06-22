@@ -1,0 +1,8 @@
+﻿topic: ~tweetEvent repeat [ CODET01 CODET02 ]
+
+u: ( CODET01 ) keep() repeat() [CODET01 작업 처리되었습니다.]
+
+topic: ~timeTweetEvent repeat [ EVENTTWEETCODE01 ]
+
+u: ( EVENTTWEETCODE01 ) keep() repeat() [안녕하세요! "봇과 함께 춤을" 팀의 멤버 제피입니다!] [강남대학교 최고!] [동아리는 아우내!]
+
