@@ -29,7 +29,7 @@ def sendAndReceiveChatScript(msgToSend, server='127.0.0.1', port=1023, timeout=1
 if __name__ == '__main__':
     server = "127.0.0.1"
     port = 1023
-    botname = "Zepi"
+    botname = "Sensiki"
     user ='Siu'
 
 

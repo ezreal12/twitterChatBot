@@ -24,15 +24,15 @@ def parseBotScriptProtocol(data):
 # 특수기능의 처리 혹은 null 일때 처리는 호출부에서 알아서 할것
 # CODET01 = 최근 트윗 제거
 # CODET02 = 관리자가 아닌데 명령해서 거절트윗
-def parseUserMsgForTweet(data,isAdmin=False):
+def parseUserMsgForTweet(msg):
     # 트윗 보낸자가 관리자가 아닐경우 명령어 인식을 할수없다.
     removeCode1 = "트윗"
     removeCode2 = "지워"
-    if removeCode1 in data :
-        if removeCode2 in data:
+    if removeCode1 in msg.text :
+        if removeCode2 in msg.text:
             #트윗 / 지워가 다 있을경우 삭제 명령으로 취급
             # 관리자면 명령수행코드 리턴 아니면 거절코드 리턴
-            if isAdmin:
+            if msg.isAdmin:
                 return "CODET01"
             else:
                 return "CODET02"

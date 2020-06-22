@@ -4,6 +4,7 @@ import tweepy
 import TweetParser
 import botTweeterAPI
 import TweetTimer
+import Massage
 # Go to http://apps.twitter.com and create an app.
 # The consumer key and secret will be generated for you after
 consumer_key="C7LW1zGfBPdBEPuMZI8skPwKB"
@@ -51,19 +52,17 @@ class StdOutListener(StreamListener):
         if data == "Err":
             print ("------------------------ERROR on_data -------------------")
         elif api:
-            parseText = TweetParser.parseTweetData(data, "text")
-            screenName = TweetParser.parseTweetData(data,"screen_name")
-            #"screen_name": "Cyphers_SiuKim"
+            msg = Massage.parseMassage(data)
             # 관리자외의 사람은 : 명령과 트윗조작 명령을 내릴수없으며 트윗조작명령에 대해선 보고한다.
             # 트윗 보낸자가 관리자가 아닐경우 명령어 인식을 할수없다.
-            isAdmin = False
-            if admin_screen_name == screenName:
-                isAdmin = True
+            if admin_screen_name == msg.screen_name:
+                msg.isAdmin = True
             # 사용자가 보낸 text에서 트위터 조작에 관한 내용이 있는지 체크
-            tweetStatusMsg = TweetParser.parseUserMsgForTweet(parseText,isAdmin)
+            tweetStatusMsg = TweetParser.parseUserMsgForTweet(msg)
+
             # 조작에 관한 내용이 아니면 봇한테 전송
             if tweetStatusMsg == "null":
-                botTweeterAPI.sendBotAndTweetRespone(api,parseText)
+                botTweeterAPI.sendBotAndTweetRespone(api,msg.text)
             # 조작에 관한 내용이면 해당 프로세스 실행함
             else:
                 controlTweet(tweetStatusMsg)
