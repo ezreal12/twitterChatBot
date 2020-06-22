@@ -50,7 +50,10 @@ def parseTweetData(data,id):
 
         if arr2[0]==formatId:
             serchData = arr2[1]
+            # 문자열 데이터에 들어있을 쌍따옴표 제거
             serchData = serchData.replace('"',"")
+            # 문자열 데이터의 개행문자를 띄어쓰기 문자로 치환
+            serchData = serchData.replace('\n', " ")
             return serchData
 
     return "null"
