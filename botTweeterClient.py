@@ -5,6 +5,7 @@ import TweetParser
 import botTweeterAPI
 import TweetTimer
 import Massage
+import FllowerManager
 # Go to http://apps.twitter.com and create an app.
 # The consumer key and secret will be generated for you after
 consumer_key="C7LW1zGfBPdBEPuMZI8skPwKB"
@@ -21,8 +22,20 @@ admin_screen_name = "Dev_test_siuKim"
 ## !-- tweepy.error.TweepError: [{'code': 187, 'message': 'Status is a duplicate.'}]
 # 위에 대한 대처를 할것 -> 에러 발생시 특정 트윗을 지우던가 싹다 날리던가 하자
 
-
+# 트위터 API 객체
 global api
+# 팔로워 목록을 리스트로 보관하는 객체
+# FllowerManager에서 반드시 init을 호출해야함
+global fllower
+# 리스트에 screen_name이 등록된 유저만 이용 가능
+# 등록된 유저면 True 아닐경우 False 리턴
+def checkFllower(screen_name):
+    for f in fllower:
+        if(f==screen_name):
+            return True
+
+    return False
+
 
 # CODET01 = 최근 트윗 제거
 # CODET02 = 관리자가 아닌데 명령해서 거절트윗
@@ -54,6 +67,10 @@ class StdOutListener(StreamListener):
         elif api:
             # 전달된 데이터를 기반으로 관련 정보(ID,트윗 내용등) 뽑아내기
             msg = Massage.parseMassage(data)
+            # 팔로워가 아닌경우 메시지 처리 안함
+            if(checkFllower(msg.screen_name)==False):
+                print("NOT FLLOWER : "+msg.screen_name)
+                return True
             # 형태소 분석해서 메시지 치환하기
             msg.text=TweetParser.parseFromOkt(msg.text)
             # 관리자외의 사람은 : 명령과 트윗조작 명령을 내릴수없으며 트윗조작명령에 대해선 보고한다.
@@ -78,6 +95,8 @@ if __name__ == '__main__':
     l = StdOutListener()
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
+    #반드시 호출해야함
+    fllower = FllowerManager.initFllowers()
     api = tweepy.API(auth)
     print("auth SET")
     stream = Stream(auth, l)

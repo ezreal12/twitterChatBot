@@ -6,7 +6,13 @@ class Massage:
     screen_name=None
     text=None
     isAdmin=False
-
+    # 호감도
+    HP=0
+    # 첫번째 스크립트를 봤는가?
+    isFirstScript = False
+    # 두번째 스크립트를 봤는가?
+    isSecondScript=False
+    
 def parseMassage(data):
     text = TweetParser.parseTweetData(data, "text")
     screenName = TweetParser.parseTweetData(data, "screen_name")
