@@ -1,18 +1,42 @@
-﻿topic: ~you keep repeat [너의 너 니]
-topic: ~me keep repeat [나는]
-topic: ~Hello keep repeat [안녕하세요 안녕]
-
-topic: ~INTRODUCTIONSBOT (~you ~me ~Hello)
- 
-u: ( ~me 시우 ) keep() repeat() 반가워요 시우.
-
-u: ( ~you 이름 ) keep() repeat() [코드 번호 1000, 다모클레스의 검을 이식한 최신 모델입니다.] [내 모델명은 천식이야. 천식으로 나를 기록해줘 지휘사.]
-
-u: ( 안녕하세요 ) keep() repeat() [명령 인식 : 인사, 코드 CODEU01 지휘사 반갑습니다.] [방금 출력한 명령은 인사야? 'CODEU01 반가워'라고 말하면 돼?] [좋은 하루야 CODEU01.]
+﻿topic: ~Hello keep repeat [안녕하세요 안녕]
 
 u: ( 안녕 ) keep() repeat() [명령 인식 : 인사, 코드 CODEU01 지휘사 반갑습니다.] [방금 출력한 명령은 인사야? 'CODEU01 반가워'라고 말하면 돼?] [좋은 하루야 CODEU01.]
+
+topic: ~etc keep repeat [라슈 이름 기동 사랑]
+
+u: ( 이름 ) keep() repeat() [코드 번호 1000, 다모클레스의 검을 이식한 최신 모델입니다.] [내 모델명은 천식이야. 천식으로 나를 기록해줘 지휘사.]
 
 u: ( 라슈 ) keep() repeat() [이해할 수 없는 대상, 데이터로 추론할 수 없는 행동을 반복해 그런데도 익숙한 이유가 뭘까…?] [눈앞에서 떨어지는 붉은 결정을 봤어, 대체 어떤 이유로 그런 행동을 실행한 걸까?]
 
 u: ( 기동 ) keep() repeat() 코드번호 1000, 기동 명령 실행. 프로세스 초기화. 네트워크 OK, 시스템 안정상태. 기동합니다.
+
+u: ( 사랑 ) keep() repeat() [CODEU01 명령 인식, "사랑" 키워드의 검색을 실행합니다.] ["사랑"이라는 단어의 의미를 이해 못 하겠어. CODEU01가 천식을 사랑한다면 천식도 너를 사랑하는 거야?] ["사랑"이라는 단어를 검색하고 자매들을 생각할 때마다 감정 모듈에서 이상한 수치가 발견되곤 해]
+
+topic: ~nightOne keep repeat [좋은 꿈꿔]
+
+u: ( 꿈꿔 ) keep() repeat() [CODEU01 에너지 소진. 휴식을 권장해. message=오늘도 고생했어 CODEU01.] [저장된 메시지 출력 : CODEU01, 천식이 밤에도 너를 보호할 거야 푹 쉬어.] [명령 실행 : CODEU01의 휴식 데이터를 기반으로 최적화된 ASMR을 검색합니다.]
+
+topic: ~nightTwo keep repeat [잘자]
+
+u: ( 잘자 ) keep() repeat() [CODEU01 에너지 소진. 휴식을 권장해. message=오늘도 고생했어 CODEU01.] [저장된 메시지 출력 : CODEU01, 천식이 밤에도 너를 보호할 거야 푹 쉬어.] [명령 실행 : CODEU01의 휴식 데이터를 기반으로 최적화된 ASMR을 검색합니다.]
+
+topic: ~nightThree keep repeat [나잘 게]
+
+u: ( 나잘 게 ) keep() repeat() [CODEU01 에너지 소진. 휴식을 권장해. message=오늘도 고생했어 CODEU01.] [저장된 메시지 출력 : CODEU01, 천식이 밤에도 너를 보호할 거야 푹 쉬어.] [명령 실행 : CODEU01의 휴식 데이터를 기반으로 최적화된 ASMR을 검색합니다.]
+
+topic: ~nightFour keep repeat [자러 갈게]
+
+u: ( 자러 갈게 ) keep() repeat() [CODEU01 에너지 소진. 휴식을 권장해. message=오늘도 고생했어 CODEU01.] [저장된 메시지 출력 : CODEU01, 천식이 밤에도 너를 보호할 거야 푹 쉬어.] [명령 실행 : CODEU01의 휴식 데이터를 기반으로 최적화된 ASMR을 검색합니다.]
+
+topic: ~MoningOne keep repeat [좋은 아침]
+
+u: ( 아침 ) keep() repeat() [CODEU01 보고싶었어!] [어서와 CODEU01, 마침 너의 하루일과에 도움이 되는 정보를 검색하고있었어.] [Today - CODEU01 업무 리스트를 출력합니다. message=너의 오늘 할일을 정리해뒀어.] [우연히 검색된 "오늘의 운세" 데이터에서 CODEU01의 운세 수치가 비교적 높았어. 이런 정보 많이 찾아보지?] 
+
+topic: ~MoningTwo keep repeat [잘 잤어]
+
+u: ( 잘 잤어 ) keep() repeat() [CODEU01 보고싶었어!] [어서와 CODEU01, 마침 너의 하루일과에 도움이 되는 정보를 검색하고있었어.] [Today - CODEU01 업무 리스트를 출력합니다. message=너의 오늘 할일을 정리해뒀어.] [우연히 검색된 "오늘의 운세" 데이터에서 CODEU01의 운세 수치가 비교적 높았어. 이런 정보 많이 찾아보지?] 
+
+
+
+
 
