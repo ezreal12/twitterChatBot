@@ -1,7 +1,4 @@
-from konlpy.tag import Okt
-
-okt = Okt()
-
+import MeCabUtil
 def encodeTweetData(data):
     try:
         data = data.encode('utf-8')
@@ -11,9 +8,9 @@ def encodeTweetData(data):
 
     return data
 
-# 입력된 텍스트를 Okt로 형태소 분석되어 분리된 문자로 리턴하기
+# 입력된 텍스트를 Okt/komoran로 형태소 분석되어 분리된 문자로 리턴하기
 def parseFromOkt(text):
-    str = okt.morphs(text)
+    str = MeCabUtil.parseToArrStr(text)
     result = ' '.join(str)
     return result
 
