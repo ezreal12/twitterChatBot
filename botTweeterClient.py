@@ -97,7 +97,7 @@ if __name__ == '__main__':
     print("auth SET")
     stream = Stream(auth, l)
     print("Stream SET")
-    timer = TweetTimer.TweetTimer(api,600)
+    timer = TweetTimer.TweetTimer(api,1*60*60)
     # follow=["950212844385005570"] - 테스트 계정 / 937835196568571904 - 본계
     filtro = ['#CODE_NUM_1000']
     # 팔로우랑 필터가 동시에있으면 필터가안먹음
