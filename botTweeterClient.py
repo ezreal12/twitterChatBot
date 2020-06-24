@@ -45,6 +45,9 @@ def startStreaming(stream,filtro):
             stream.filter(track=filtro)
 
         except ProtocolError:
+            # 반복 리스타트 실행시 500에러를 띄우며 기다리는데 이는 HTTP의 500 에러로 추정됨
+            # HTTP 500 에러라면 트위터 서버나 트윗피와 관련된 어떤 서버가 터졌을시 이런 에러가 생김
+            # 500에러를 리트라이하면서 기다린다면 다시 살아남
             print("------ERROR startStreaming ----")
             print(ProtocolError)
             print("------RESTART startStreaming  ----")
