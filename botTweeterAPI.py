@@ -16,6 +16,8 @@ import TweetParser
 # 3. 전달한 메시지의 대한 답장을 가져온다.
 # 4. 가져온 답장을 트위터에 그대로 적는다.
 #+ 트윗을 보낸 사람의 ID 정보가 있으면 앞에 태그해서 트위터에 적는다. ex) @screen_name 트윗내용
+# 스케쥴러 등에 의해 호출됬는데 태그할 대상이 따로없는경우(혼잣말인경우) msg가 None이다
+# 봇한테 보내는 메시지를 msg.text로 찾으려고 들지말것.
 def sendBotAndTweetRespone(api,text,msg=None):
     if text != "null":
         # 주의 : 임시로 포트번호 1023으로 바꿨음

@@ -12,7 +12,8 @@ class Massage:
     isFirstScript = False
     # 두번째 스크립트를 봤는가?
     isSecondScript=False
-    
+
+# 트위터에서 받아온 data를 기반으로 메시지 객체 만들어내기
 def parseMassage(data):
     text = TweetParser.parseTweetData(data, "text")
     # 해시태그는 지워줌.
@@ -27,8 +28,20 @@ def parseMassage(data):
     text = text.encode('utf-16','surrogatepass').decode('utf-16')
     
     msg = Massage()
-    msg.id = id;
-    msg.screen_name = screenName;
-    msg.text = text;
-    msg.name = name;
+    msg.id = id
+    msg.screen_name = screenName
+    msg.text = text
+    msg.name = name
+    return msg
+
+
+# screen_name과 코드를 입력받고 해당 코드와 screen_name으로 된 가짜 Message 객체를 만들어냄
+# Message를 "어떤 사람이 봇한테 한 말과 그 정보를 담는 객체"로 인식할것
+# 그렇다면 여기서 만드는 Message는 스케쥴러가 봇한테 보내는 메시지가 되는것.
+def createEventMessage(screen_name,code):
+    msg = Massage()
+    msg.id=1234
+    msg.screen_name = screen_name
+    msg.text=code
+    msg.name="name"
     return msg

@@ -7,6 +7,7 @@ import botTweeterAPI
 import TweetTimer
 import Massage
 import FllowerManager
+import EventManager
 # Go to http://apps.twitter.com and create an app.
 # The consumer key and secret will be generated for you after
 consumer_key="C7LW1zGfBPdBEPuMZI8skPwKB"
@@ -28,6 +29,10 @@ global api
 # 팔로워 목록을 리스트로 보관하는 객체
 # FllowerManager에서 반드시 init을 호출해야함
 global fllower
+# 1개만 존재하는 이벤트 관리자
+# 유저의 screen_name으로 이벤트를 관리함.
+global eventManager
+
 # 리스트에 screen_name이 등록된 유저만 이용 가능
 # 등록된 유저면 True 아닐경우 False 리턴
 def checkFllower(screen_name):
@@ -36,6 +41,24 @@ def checkFllower(screen_name):
             return True
 
     return False
+# Message 객체를 입력받아서 해당 객체로 메시지 전달하는 처리하기.
+def sendMsg(msg):
+    # 형태소 분석해서 메시지 치환하기
+    msg.text = TweetParser.parseFromOkt(msg.text)
+    # 관리자외의 사람은 : 명령과 트윗조작 명령을 내릴수없으며 트윗조작명령에 대해선 보고한다.
+    # 트윗 보낸자가 관리자가 아닐경우 명령어 인식을 할수없다.
+    if admin_screen_name == msg.screen_name:
+        msg.isAdmin = True
+    # 사용자가 보낸 text에서 트위터 조작에 관한 내용이 있는지 체크
+    tweetStatusMsg = TweetParser.parseUserMsgForTweet(msg)
+
+    # 조작에 관한 내용이 아니면 봇한테 전송
+    if tweetStatusMsg == "null":
+        botTweeterAPI.sendBotAndTweetRespone(api, msg.text, msg)
+    # 조작에 관한 내용이면 해당 프로세스 실행함
+    else:
+        controlTweet(tweetStatusMsg, msg)
+
 # 스트리밍 시작하기
 # 에러 발생시 에러를 무시하고 재시작 시킴
 # 주의 startStreaming 다음으로 오는 명령은 실행되지않음.
@@ -43,7 +66,6 @@ def startStreaming(stream,filtro):
     while True:
         try:
             stream.filter(track=filtro)
-
         except ProtocolError:
             # 반복 리스타트 실행시 500에러를 띄우며 기다리는데 이는 HTTP의 500 에러로 추정됨
             # HTTP 500 에러라면 트위터 서버나 트윗피와 관련된 어떤 서버가 터졌을시 이런 에러가 생김
@@ -72,6 +94,7 @@ class StdOutListener(StreamListener):
 
     # 데이터는 단순한 문자열이고 파싱이 필요함
     # 파싱  후 text를 뽑아내서 트위터에 써보기
+    # 트윗을 검색했을때 콜백함수 여기가 메인임.
     def on_data(self, data):
         data = TweetParser.encodeTweetData(data)
         if data == "Err":
@@ -83,21 +106,14 @@ class StdOutListener(StreamListener):
             if(checkFllower(msg.screen_name)==False):
                 print("NOT FLLOWER : "+msg.screen_name)
                 return True
-            # 형태소 분석해서 메시지 치환하기
-            msg.text=TweetParser.parseFromOkt(msg.text)
-            # 관리자외의 사람은 : 명령과 트윗조작 명령을 내릴수없으며 트윗조작명령에 대해선 보고한다.
-            # 트윗 보낸자가 관리자가 아닐경우 명령어 인식을 할수없다.
-            if admin_screen_name == msg.screen_name:
-                msg.isAdmin = True
-            # 사용자가 보낸 text에서 트위터 조작에 관한 내용이 있는지 체크
-            tweetStatusMsg = TweetParser.parseUserMsgForTweet(msg)
+            # 해당 사용자가 이벤트 진행중이 아니였으면 대화계속 진행함.
+            # 이벤트 진행중이였을때 대화는 EventManager가 알아서함.
+            # checkUserEvent 리턴값이 None이면 대화 하던중이였음.
+            if(eventManager.checkUserEvent(msg.screen_name)!=None):
+                return True
 
-            # 조작에 관한 내용이 아니면 봇한테 전송
-            if tweetStatusMsg == "null":
-                botTweeterAPI.sendBotAndTweetRespone(api,msg.text,msg)
-            # 조작에 관한 내용이면 해당 프로세스 실행함
-            else:
-                controlTweet(tweetStatusMsg,msg)
+            sendMsg(msg)
+
         return True
 
     def on_error(self, status):
@@ -107,13 +123,17 @@ if __name__ == '__main__':
     l = StdOutListener()
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
-    #반드시 호출해야함
+    #아래 내용들은 반드시 호출해야함
     fllower = FllowerManager.initFllowers()
     api = tweepy.API(auth)
+    eventManager = EventManager.EventManagerCore(api)
     print("auth SET")
     stream = Stream(auth, l)
     print("Stream SET")
-    timer = TweetTimer.TweetTimer(api,1*60*60)
+    #1*60*60
+    #TODO
+    timer = TweetTimer.TweetTimer(api,1*60*60,eventManager,fllower)
+
     # follow=["950212844385005570"] - 테스트 계정 / 937835196568571904 - 본계
     filtro = ['#CODE_NUM_1000']
     # 팔로우랑 필터가 동시에있으면 필터가안먹음
