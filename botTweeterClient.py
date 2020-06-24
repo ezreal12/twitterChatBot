@@ -1,5 +1,6 @@
 from __future__ import absolute_import, print_function
 from tweepy import OAuthHandler, Stream, StreamListener
+from urllib3.exceptions import ProtocolError
 import tweepy
 import TweetParser
 import botTweeterAPI
@@ -35,7 +36,18 @@ def checkFllower(screen_name):
             return True
 
     return False
+# 스트리밍 시작하기
+# 에러 발생시 에러를 무시하고 재시작 시킴
+def startStreaming(stream,filtro):
+    while True:
+        try:
+            stream.filter(track=filtro)
 
+        except ProtocolError:
+            print("------ERROR startStreaming ----")
+            print(ProtocolError)
+            print("------RESTART startStreaming  ----")
+            continue
 
 # CODET01 = 최근 트윗 제거
 # CODET02 = 관리자가 아닌데 명령해서 거절트윗
@@ -101,6 +113,6 @@ if __name__ == '__main__':
     # follow=["950212844385005570"] - 테스트 계정 / 937835196568571904 - 본계
     filtro = ['#CODE_NUM_1000']
     # 팔로우랑 필터가 동시에있으면 필터가안먹음
-    stream.filter(track=filtro)
+    startStreaming(stream,filtro)
     #stream.filter()
     print("stream filter")
