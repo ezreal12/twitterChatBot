@@ -23,8 +23,7 @@ class TweetTimer:
 
     def startTimerEvent(self):
         r=random.randrange(0, 2)
-        #r==0
-        #TODO
+
         if(r==0):
             # 50퍼센트의 확률로 혼잣말
             # 봇한테 EVENTTWEETCODE01 로 말을 걸면 EVENTTWEETCODE01 에 맞는 혼잣말 대사를 매칭해서 말한다.
@@ -33,7 +32,12 @@ class TweetTimer:
         else:
             # 50퍼센트의 확률로 랜덤상대한테 말걸기
             screen_name = random.choice(self.fllower)
-            time_msg = Massage.createEventMessage(screen_name,"EVENTTWEETCODE02")
+            # 고른 랜덤상대의 상세한 정보 가져오기
+            user = self.api.get_user(screen_name)
+            if(user==None):
+                return
+            #createEventMessage(id,screen_name,name,code):
+            time_msg = Massage.createEventMessage(user.id,screen_name,user.name,"EVENTTWEETCODE02")
             botTweeterAPI.sendBotAndTweetRespone(self.api, "EVENTTWEETCODE02",time_msg)
             #addEvent(self,screen_name, event_code, value=None):
             #상대한테 말을 걸고 이벤트 추가하기

@@ -130,8 +130,7 @@ if __name__ == '__main__':
     print("auth SET")
     stream = Stream(auth, l)
     print("Stream SET")
-    #1*60*60
-    #TODO
+
     timer = TweetTimer.TweetTimer(api,1*60*60,eventManager,fllower)
 
     # follow=["950212844385005570"] - 테스트 계정 / 937835196568571904 - 본계

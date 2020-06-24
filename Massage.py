@@ -38,10 +38,10 @@ def parseMassage(data):
 # screen_name과 코드를 입력받고 해당 코드와 screen_name으로 된 가짜 Message 객체를 만들어냄
 # Message를 "어떤 사람이 봇한테 한 말과 그 정보를 담는 객체"로 인식할것
 # 그렇다면 여기서 만드는 Message는 스케쥴러가 봇한테 보내는 메시지가 되는것.
-def createEventMessage(screen_name,code):
+def createEventMessage(id,screen_name,name,code):
     msg = Massage()
-    msg.id=1234
+    msg.id=id
     msg.screen_name = screen_name
     msg.text=code
-    msg.name="name"
+    msg.name=name
     return msg
