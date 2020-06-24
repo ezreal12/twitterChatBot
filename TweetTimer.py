@@ -22,9 +22,9 @@ class TweetTimer:
         threading.Timer(self.timeSec,self.Task).start()
 
     def startTimerEvent(self):
-        r=random.randrange(0, 2)
+        r=random.randrange(0, 5)
 
-        if(r==0):
+        if(r!=1):
             # 50퍼센트의 확률로 혼잣말
             # 봇한테 EVENTTWEETCODE01 로 말을 걸면 EVENTTWEETCODE01 에 맞는 혼잣말 대사를 매칭해서 말한다.
             botTweeterAPI.sendBotAndTweetRespone(self.api, "EVENTTWEETCODE01")
