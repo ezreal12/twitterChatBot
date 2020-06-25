@@ -1,3 +1,6 @@
+from pytz import timezone
+from datetime import datetime
+
 import threading
 import botTweeterAPI
 import random
@@ -23,6 +26,13 @@ class TweetTimer:
 
     def startTimerEvent(self):
         r=random.randrange(0, 5)
+        # 한국시간으로 새벽일경우 무조건 혼잣말을 함   즉, r=0
+        kst = datetime.now(timezone('Asia/Seoul'))
+        if(kst!=None and kst.hour!=None):
+            # 새벽 시간은 0시 ~ 7시로 , 혹은 밤 11시(23시)로 한정함
+            if(kst.hour<=7 or kst.hour==23):
+                print("--- hour limit --")
+                r=0
 
         if(r!=1):
             # 50퍼센트의 확률로 혼잣말
@@ -39,8 +49,10 @@ class TweetTimer:
             #createEventMessage(id,screen_name,name,code):
             time_msg = Massage.createEventMessage(user.id,screen_name,user.name,"EVENTTWEETCODE02")
             botTweeterAPI.sendBotAndTweetRespone(self.api, "EVENTTWEETCODE02",time_msg)
-            #addEvent(self,screen_name, event_code, value=None):
+
             #상대한테 말을 걸고 이벤트 추가하기
-            #self.eventManager.addEvent()
+            #랜덤으로 질문기다리는건 드랍하기로함.
+            #랜덤으로 질문을 했다고 해서 꼭 대답이 돌아올거란 보장이 없음.
+
 
         
