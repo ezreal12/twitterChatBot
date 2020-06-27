@@ -54,7 +54,7 @@ def sendMsg(msg):
 
     # 조작에 관한 내용이 아니면 봇한테 전송
     if tweetStatusMsg == "null":
-        botTweeterAPI.sendBotAndTweetRespone(api, msg.text, msg)
+        botTweeterAPI.sendBotAndTweetRespone(api, msg.text, msg,eventManager)
     # 조작에 관한 내용이면 해당 프로세스 실행함
     else:
         controlTweet(tweetStatusMsg, msg)
@@ -109,7 +109,7 @@ class StdOutListener(StreamListener):
             # 해당 사용자가 이벤트 진행중이 아니였으면 대화계속 진행함.
             # 이벤트 진행중이였을때 대화는 EventManager가 알아서함.
             # checkUserEvent 리턴값이 None이면 대화 하던중이였음.
-            if(eventManager.checkUserEvent(msg.screen_name)!=None):
+            if(eventManager.checkUserEvent(msg)!=None):
                 return True
 
             sendMsg(msg)

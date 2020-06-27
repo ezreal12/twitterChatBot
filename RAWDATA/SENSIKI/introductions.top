@@ -8,7 +8,7 @@ u: ( 이름 ) keep() repeat() [코드 번호 1000, 다모클레스의 검을 이
 
 u: ( 기동 ) keep() repeat() 코드번호 1000, 기동 명령 실행. 프로세스 초기화. 네트워크 OK, 시스템 안정상태. 기동합니다.
 
-u: ( [사랑 사랑*] ) keep() repeat() [CODEU01 명령 인식, "사랑" 키워드의 검색을 실행합니다.] ["사랑"이라는 단어의 의미를 이해 못 하겠어. CODEU01가 천식을 사랑한다면 천식도 너를 사랑하는 거야?] ["사랑"이라는 단어를 검색하고 자매들을 생각할 때마다 감정 모듈에서 이상한 수치가 발견되곤 해]
+u: ( [사랑 사랑*] ) keep() repeat() [CODEU01 명령 인식, "사랑" 키워드의 검색을 실행합니다.] ["사랑"이라는 단어의 의미를 이해 못 하겠어. CODEU01이 천식을 사랑한다면 천식도 너를 사랑하는 거야?] ["사랑"이라는 단어를 검색하고 자매들을 생각할 때마다 감정 모듈에서 이상한 수치가 발견되곤 해]
 
 topic: ~redGem keep repeat [라 슈]
 
@@ -30,14 +30,31 @@ topic: ~nightFour keep repeat [자 러 갈 게]
 
 u: ( * 자 러 갈 게 ) keep() repeat() [CODEU01 에너지 소진. 휴식을 권장해. message=오늘도 고생했어 CODEU01.] [저장된 메시지 출력 : CODEU01, 천식이 밤에도 너를 보호할 거야 푹 쉬어.] [명령 실행 : CODEU01의 휴식 데이터를 기반으로 최적화된 ASMR을 검색합니다.]
 
+topic: ~nightFive keep repeat [굿 나잇]
+
+u: ( 굿 나잇 ) keep() repeat() [CODEU01 에너지 소진. 휴식을 권장해. message=오늘도 고생했어 CODEU01.] [저장된 메시지 출력 : CODEU01, 천식이 밤에도 너를 보호할 거야 푹 쉬어.] [명령 실행 : CODEU01의 휴식 데이터를 기반으로 최적화된 ASMR을 검색합니다.]
+
+
 topic: ~MoningOne keep repeat [아침]
 
 u: ( 아침 ) keep() repeat() [CODEU01 보고싶었어!] [어서와 CODEU01, 마침 너의 하루일과에 도움이 되는 정보를 검색하고있었어.] [Today - CODEU01 업무 리스트를 출력합니다. message=너의 오늘 할일을 정리해뒀어.] [우연히 검색된 "오늘의 운세" 데이터에서 CODEU01의 운세 수치가 비교적 높았어. 이런 정보 많이 찾아보지?] 
 
-topic: ~MoningTwo keep repeat [잘 잤 어]
+topic: ~MoningTwo keep repeat [굿모닝]
+
+u: ( 굿모닝 ) keep() repeat() [CODEU01 보고싶었어!] [어서와 CODEU01, 마침 너의 하루일과에 도움이 되는 정보를 검색하고있었어.] [Today - CODEU01 업무 리스트를 출력합니다. message=너의 오늘 할일을 정리해뒀어.] [우연히 검색된 "오늘의 운세" 데이터에서 CODEU01의 운세 수치가 비교적 높았어. 이런 정보 많이 찾아보지?] 
+
+
+topic: ~MoningThree keep repeat [잘 잤 어]
 
 u: ( 잘 잤 어 ) keep() repeat() [CODEU01 보고싶었어!] [어서와 CODEU01, 마침 너의 하루일과에 도움이 되는 정보를 검색하고있었어.] [Today - CODEU01 업무 리스트를 출력합니다. message=너의 오늘 할일을 정리해뒀어.] [우연히 검색된 "오늘의 운세" 데이터에서 CODEU01의 운세 수치가 비교적 높았어. 이런 정보 많이 찾아보지?] 
 
+topic: ~LikeYou keep repeat [좋 아 해]
+
+u: ( 천식 * 좋 아 해 ) keep() repeat() [CODEU01의 "좋아해" 대상을 탐색합니다] [좋아해? 무엇을? 천식의 데이터에 없는 대상이야?]
+
+topic: ~Cute keep repeat [귀여워]
+
+u: ( 귀여워 ) keep() repeat() [CODEU01을 지켜보면 흥미로울 때가 많아. 이런 게 "귀엽다"는 감정이야?]
 
 
 
