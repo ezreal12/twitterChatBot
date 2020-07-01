@@ -74,6 +74,11 @@ def startStreaming(stream,filtro):
             print(ProtocolError)
             print("------RESTART startStreaming  ----")
             continue
+        except BaseException:
+            print("------ERROR startStreaming ----")
+            print(BaseException)
+            print("------RESTART startStreaming  ----")
+            continue
 
 # CODET01 = 최근 트윗 제거
 # CODET02 = 관리자가 아닌데 명령해서 거절트윗
