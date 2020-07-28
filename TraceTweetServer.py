@@ -1,5 +1,6 @@
 from __future__ import absolute_import, print_function
 from tweepy import OAuthHandler, Stream, StreamListener
+from urllib3.exceptions import ProtocolError
 import TweetParser
 import tweepy
 import time
@@ -17,6 +18,29 @@ access_token_secret="Km90CJMsp8NPaVnw2ecAKTlPywLtARC9HuYkr1fMpnV71"
 follwers=['1263315003370688513','937835196568571904']
 
 global api
+
+# 스트리밍 시작하기
+# 에러 발생시 에러를 무시하고 재시작 시킴
+# 주의 startStreaming 다음으로 오는 명령은 실행되지않음.
+def startStreaming(stream):
+    while True:
+        try:
+            stream.filter(follow=follwers)
+        except ProtocolError:
+            # 반복 리스타트 실행시 500에러를 띄우며 기다리는데 이는 HTTP의 500 에러로 추정됨
+            # HTTP 500 에러라면 트위터 서버나 트윗피와 관련된 어떤 서버가 터졌을시 이런 에러가 생김
+            # 500에러를 리트라이하면서 기다린다면 다시 살아남
+            print("------ERROR ProtocolError Trace Streaming ----")
+            print(ProtocolError)
+            print("------RESTART ProtocolError Trace Streaming  ----")
+            continue
+        except BaseException:
+            print("------ERROR BaseException Trace Streaming ----")
+            print(BaseException)
+            print("------RESTART BaseException Trace Streaming  ----")
+            continue
+
+
 
 # 입력받은 id_str을 확인해서 팔로워면 True 아니면 False 리턴
 def isFollwerId(id_str):
@@ -79,5 +103,4 @@ if __name__ == '__main__':
     print("auth SET")
     stream = Stream(auth, l)
     print("Stream SET")
-    stream.filter(follow=follwers)
-    print("stream filter")
+    startStreaming(stream)
