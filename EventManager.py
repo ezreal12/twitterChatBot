@@ -46,7 +46,8 @@ class EventManagerCore:
                     #무효가 된 큐 폐기
                     EventManagerCore.eventQue.remove(q)
                     # None을 리턴하게되면 botTweeterClient쪽에서 대화 그대로 흘러감
-                    return None
+                    # 무효 큐가 걸리면 해당 큐를 폐기하고 다음 큐 탐색을 계속 이어감
+                    continue
                 if(q.event_code=="EVENTLIKE1"):
                     # 대화는 밑의 이벤트 클래스에서 직접 처리해줘야함.
                     EventDir.HomeEvent.homeEventReLike(self.api,msg)
@@ -68,4 +69,5 @@ class EventManagerCore:
                     return "EVENTTWEETCODE03RE"
 
         #None을 리턴하게되면 botTweeterClient쪽에서 대화 그대로 흘러감
+        #큐가 검색되지 않았거나 폐기된 큐만 있을경우 None이 리턴됨.
         return None
