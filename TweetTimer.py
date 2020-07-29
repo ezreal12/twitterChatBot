@@ -6,7 +6,7 @@ import botTweeterAPI
 import random
 import Massage
 import TraceDataManager
-
+import tweepy.error
 
 class TweetTimer:
     # EVENTTWEETCODE01 = 매 시간 자동으로 하는 혼잣말
@@ -68,8 +68,13 @@ class TweetTimer:
 # eventManager = "봇이 먼저 말했는데" 그 자체가 이벤트로 추가될 경우 필요함
 # 예 : 봇이 모르는 어떤 단어를 질문하고 답변을 기다릴때 이벤트 발생
 def sendEventCodeForUser(eventCode,screen_name,api,eventManager=None):
-    # 고른 랜덤상대의 상세한 정보 가져오기
-    user = api.get_user(screen_name)
+    try:
+        # 고른 랜덤상대의 상세한 정보 가져오기
+        user = api.get_user(screen_name)
+    except tweepy.error.TweepError:
+        print("이벤트 에러 발생 !! 해당 유저 정보 없음 : " + screen_name)
+        return
+
     if (user == None):
         print("해당 유저 정보 없음 : "+screen_name)
         return
