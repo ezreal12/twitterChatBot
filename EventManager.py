@@ -4,6 +4,7 @@ from pytz import timezone
 from datetime import datetime
 import Event
 import EventDir.HomeEvent
+import EventDir.WordEvent
 class EventManagerCore:
     eventQue = []
     def __init__(self,api):
@@ -56,5 +57,15 @@ class EventManagerCore:
                     EventDir.HomeEvent.homeEventReSad(self.api, msg)
                     EventManagerCore.eventQue.remove(q)
                     return "EVENTSAD1RE"
+
+                elif(q.event_code=="EVENTTWEETCODE03"):
+                    # 대화는 밑의 이벤트 클래스에서 직접 처리해줘야함.
+                    # 입력받은 word의 text를 json에 저장하고 답장하기
+                    # value엔 word 데이터(word['word','cnt','text(값은 없을것임)'] 1개가 들어있음.
+                    #def saveWordText(api,msg,value):
+                    EventDir.WordEvent.saveWordText(self.api, msg, q.value)
+                    EventManagerCore.eventQue.remove(q)
+                    return "EVENTTWEETCODE03RE"
+
         #None을 리턴하게되면 botTweeterClient쪽에서 대화 그대로 흘러감
         return None

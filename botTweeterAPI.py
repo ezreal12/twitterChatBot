@@ -18,7 +18,7 @@ import TweetParser
 #+ 트윗을 보낸 사람의 ID 정보가 있으면 앞에 태그해서 트위터에 적는다. ex) @screen_name 트윗내용
 # 스케쥴러 등에 의해 호출됬는데 태그할 대상이 따로없는경우(혼잣말인경우) msg가 None이다
 # msg가 있는경우 => 태그를 받을 대상이 있다는것.
-# event가 있는경우 => (반드시) 유저가 이벤트가 없는 상태에서 말을해 이벤트가 발생할 가능성이 있는대화인경우.
+# (중요) eventManager 가 있는경우 => (반드시) 유저가 이벤트가 없는 상태에서 말을해 이벤트가 발생할 가능성이 있는대화인경우.
 # 봇한테 보내는 메시지를 msg.text로 찾으려고 들지말것.
 def sendBotAndTweetRespone(api,text,msg=None,eventManager=None):
     if text != "null":

@@ -1,6 +1,6 @@
 import MeCabUtil
-
-
+import TraceDataManager
+import random
 def encodeTweetData(data):
     try:
         data = data.encode('utf-8')
@@ -25,14 +25,19 @@ def parseFromOkt(text):
 # CODES02 = )
 # CODET01 = 삭제 (트윗 조작 후 처리 프로토콜)
 # CODEU01 = 스크립트에서 유저 이름을 나타내는것 : 주의 : name은 None일수있음 체크필수
+# 여기서 data는 봇이 말했던 텍스트 / name = CODEU01에서 치환될 유저 이름 / (중요)eventManager = 이벤트 추가를 해야하는 대사인경우 들엉모
+# screen_name = 유저 스크린 네임 -> 태그할때쓰임
 def parseBotScriptProtocol(data, name=None, eventManager=None, screen_name=None):
     data = data.replace("CODES01", "(")
     data = data.replace("CODES02", ")")
     data = data.replace("CODET01", "삭제")
+    # nam
     if (name != None):
         data = data.replace("CODEU01", name)
+        
     if (eventManager != None and screen_name != None):
         data = parseEventCode(data, eventManager, screen_name)
+        
     return data
 
 
@@ -51,6 +56,32 @@ def parseEventCode(data, eventManager, screen_name):
     elif "EVENTSAD1" in data:
         data = data.replace("EVENTSAD1", "")
         eventManager.addEvent(screen_name, "EVENTSAD1")
+    #addEvent(self,screen_name, event_code,value=None):
+    #EVENTTWEETCODE03 일때 처리하기
+    elif "EVENTTWEETCODE03" in data:
+        #일단 봇 대사에 포함된 이벤트코드 제거하기
+        data = data.replace("EVENTTWEETCODE03", "")
+        dataSp = data.split('||')
+        # screen_name으로 해당 유저의 word.json에서 랜덤하게 word 데이터 가져오기(word,cnt,text)
+        wordDataArr = TraceDataManager.getWordJsonData(screen_name)
+        # word.json 파일은 존재하는데 안에 데이터가 0인경우(없는경우)가 있을수있나? -> 아직은 없다고 가정
+        wordData = random.choice(wordDataArr)
+        # 이미 text가 있을경우 봇의 대답에 text 내용을 끼워넣어서 말해야함.
+        # 봇의 대사도 text가 있을경우||없을경우가 나뉘어있어야할듯
+        # 트위터의 140자 제한도 있고 ||로 묶은 데이터의 한계상 봇의 대사도 짧게할것
+        # EVENTTWEETCODE03 word 는 text 야? || word 가 뭐야?
+        # word에 replace로 word 넣고 text에 완성된 str 넣기
+        # || 앞쪽엔 text가 있을때 대사를 짧게, 뒤쪽엔 text 없을때 질문대사를 짧게
+        if(len(wordData['text'])>0):
+            str = ""
+            for t in wordData['text']:
+                str+=t+" "
+            data = dataSp[0].replace("word",wordData['word'])
+            data = data.replace("text",str)
+        # text가 없을경우 질문-답변-회신 이벤트 발생
+        else:
+            data = dataSp[1].replace("word",wordData['word'])
+            eventManager.addEvent(screen_name, "EVENTTWEETCODE03", wordData)
     return data
 
 
