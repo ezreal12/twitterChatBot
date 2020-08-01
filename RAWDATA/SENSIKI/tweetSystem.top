@@ -13,3 +13,6 @@ u: ( EVENTTWEETCODE02 ) keep() repeat() [전원이 종료되고 세상이 어두
 u: ( EVENTTWEETCODE03 ) keep() repeat() [EVENTTWEETCODE03word, text CODEU01에게 입력받은 정의.||천식은 CODEU01에게 요청한다. word이란 어떤 의미야?]
 
 u: ( EVENTTWEETCODE03RE ) keep() repeat() [천식은 이해했어. 이럴 땐 감사의 표현을 해야 해. 고마워 CODEU01]
+
+u: ( EVENTTWEETCODE03NOTRE ) keep() repeat() [알았어. 궁금하지만 천식은 보류할게.]
+

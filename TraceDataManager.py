@@ -153,6 +153,29 @@ def saveWordJson(wordData, screen_name):
     return isSerchSucees
 
 
+# 삭제할 wordData와 screen_name을 입력받아
+# 해당 screen_name 유저의 json에 wordData를 입력함.
+# 만약 word를 찾지 못했을경우 False, 찾았을경우 True 리턴
+def removeWordJson(wordData, screen_name):
+    # 1. 해당 screen_name의 json 가져오기
+    # ?. 해당 유저의 json이 없을수가있나?
+    jsonFileName = screen_name + ".json"
+    jsonFilePullPath = JsonFilePath + "/" + jsonFileName
+    arrData = JsonUtil.loadJsonFile(jsonFilePullPath)
+
+    isSerchSucees = False
+    for d in arrData:
+        # 일치하는 word를 찾으면 해당 word를 배열 arrData에서 제거하기.
+        if (wordData['word'] == d['word']):
+            d['text'] = wordData['text']
+            arrData.remove(d)
+            isSerchSucees = True
+            break
+    # 조작한 json 다시 저장하기
+    JsonUtil.saveJsonFile(arrData, jsonFilePullPath)
+    return isSerchSucees
+
+
 # screen_name 입력받아서 해당 유저의 json 데이터 가져오기
 # 잘 가져오면 배열 데이터를, 없으면 None을 리턴함.
 def getWordJsonData(screen_name):
