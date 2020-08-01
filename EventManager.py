@@ -36,6 +36,7 @@ class EventManagerCore:
     # 이벤트가 없으면(리턴값이 None이면) 그냥 평범하게 대화하면 되는거고
     # 리턴값이 있으면 대화하면 안됨. 대화는 여기서 처리할것.
     def checkUserEvent(self,msg):
+
         for q in EventManagerCore.eventQue:
             # 해당 사용자가 하고있던 이벤트를 확인
             if(q.screen_name==msg.screen_name):
@@ -48,7 +49,8 @@ class EventManagerCore:
                     # None을 리턴하게되면 botTweeterClient쪽에서 대화 그대로 흘러감
                     # 무효 큐가 걸리면 해당 큐를 폐기하고 다음 큐 탐색을 계속 이어감
                     continue
-                if(q.event_code=="EVENTLIKE1"):
+
+                elif(q.event_code=="EVENTLIKE1"):
                     # 대화는 밑의 이벤트 클래스에서 직접 처리해줘야함.
                     EventDir.HomeEvent.homeEventReLike(self.api,msg)
                     EventManagerCore.eventQue.remove(q)
