@@ -167,7 +167,27 @@ def removeWordJson(wordData, screen_name):
     for d in arrData:
         # 일치하는 word를 찾으면 해당 word를 배열 arrData에서 제거하기.
         if (wordData['word'] == d['word']):
-            d['text'] = wordData['text']
+            arrData.remove(d)
+            isSerchSucees = True
+            break
+    # 조작한 json 다시 저장하기
+    JsonUtil.saveJsonFile(arrData, jsonFilePullPath)
+    return isSerchSucees
+
+# 테스트용 임의 word 제거 코드
+# word를 지우고 싶은 유저의 screen_name와 지우고싶은 단어(word)를 입력하면 지움.
+# 삭제 성공시 True 리턴
+def removeWordSampeJson(word, screen_name):
+    # 1. 해당 screen_name의 json 가져오기
+    # ?. 해당 유저의 json이 없을수가있나?
+    jsonFileName = screen_name + ".json"
+    jsonFilePullPath = JsonFilePath + "/" + jsonFileName
+    arrData = JsonUtil.loadJsonFile(jsonFilePullPath)
+
+    isSerchSucees = False
+    for d in arrData:
+        # 일치하는 word를 찾으면 해당 word를 배열 arrData에서 제거하기.
+        if (word == d['word']):
             arrData.remove(d)
             isSerchSucees = True
             break
