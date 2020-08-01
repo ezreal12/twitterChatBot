@@ -65,12 +65,18 @@ class StdOutListener(StreamListener):
         elif api:
             parseText = TweetParser.parseTweetData(data, "text")
             screen_name = TweetParser.parseTweetData(data, "screen_name")
-            id_str = TweetParser.parseTweetData(data, "id_str")
+            # "트윗 id의 str"이 아닌 "유저 id의 str"은 2번째에있음.
+            id_str = TweetParser.parseTweetData(data, "id_str",2)
 
             # text 안에 RT와 골뱅이@가 포함된경우 리트윗으로간주하고 집계하지않음
             # 여기까지 온 리트윗의경우 팔로워가 자기자신의 트윗을 리트윗 혹은 다른 팔로워의 트윗을 리트윗했을 가능성이 크다.
             if(parseText.find("RT")>=0 and parseText.find("@")>=0):
                 print("is RT" + id_str + " : " + parseText)
+                return True
+            #답글등으로 인해 "팔로워가 아닌" 답글에 엮인 유저의 데이터도 수집하는것을 방지하기 위하여
+            #id_str을 통해 팔로워가 맞는지 검사하고 팔로워가 맞을경우에만 데이터 수집
+            if (isFollwerId(id_str) == False):
+                print("is NOT FOLLERT " + id_str + " : " + parseText)
                 return True
             # 모종의 이유로 text가 없거나 파싱하지 못한경우
             if(parseText=="null"):
