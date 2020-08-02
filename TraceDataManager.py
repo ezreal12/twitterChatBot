@@ -21,7 +21,7 @@ JsonFilePath = "./word"
 def checkTmpFiles():
     print("-- checkTmpFiles")
     # 공통으로 cnt 내림차순으로 몇위까지 잘라낼지 제어하는 변수
-    rankRange = 5
+    rankRange = 3
     # 1. tmp 폴더속 모든 파일들 가져오기 (주의:json만 들어있어야함.)
     tmp_list = os.listdir(TmpFilePath)
     tmpFileList = [file for file in tmp_list if file.endswith(".json")]

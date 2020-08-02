@@ -40,7 +40,7 @@ class TweetTimer:
             # 봇한테 EVENTTWEETCODE01 로 말을 걸면 EVENTTWEETCODE01 에 맞는 혼잣말 대사를 매칭해서 말한다.
             botTweeterAPI.sendBotAndTweetRespone(self.api, "EVENTTWEETCODE01")
         # r=1. 랜덤 상대 골라내기
-        elif(r==1):
+        elif(r>=1 and r<=2):
             # 팔로워 배열속에서 랜덤한 팔로워 screen_name 뽑아내기
             screen_name = random.choice(self.fllower)
             sendEventCodeForUser("EVENTTWEETCODE02",screen_name,self.api)
