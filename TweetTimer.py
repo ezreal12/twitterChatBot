@@ -48,7 +48,6 @@ class TweetTimer:
         else:
             # 팔로워 배열속에서 랜덤한 팔로워 screen_name 뽑아내기
             screen_name = random.choice(self.fllower)
-            #screen_name = "SiuKim_Seven"
             # 주의 : 이 타이머에서 이벤트를 생성하는법은 없음. 여기서는 json이 있나 확인만하고 봇한테 코드를 전달한다음
             # 봇이 코드에 맞는 대사를 하면 그 다음에 진짜 처리가 가능함.
             hasJsonFile = TraceDataManager.getWordJsonData(screen_name)
