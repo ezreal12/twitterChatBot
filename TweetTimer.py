@@ -26,7 +26,7 @@ class TweetTimer:
         threading.Timer(self.timeSec,self.Task).start()
 
     def startTimerEvent(self):
-        r=random.randrange(0, 3)
+        r=random.randrange(0, 4)
         # 한국시간으로 새벽일경우 무조건 혼잣말을 함   즉, r=0
         kst = datetime.now(timezone('Asia/Seoul'))
         if(kst!=None and kst.hour!=None):
@@ -40,7 +40,7 @@ class TweetTimer:
             # 봇한테 EVENTTWEETCODE01 로 말을 걸면 EVENTTWEETCODE01 에 맞는 혼잣말 대사를 매칭해서 말한다.
             botTweeterAPI.sendBotAndTweetRespone(self.api, "EVENTTWEETCODE01")
         # r=1. 랜덤 상대 골라내기
-        elif(r>=1 and r<=2):
+        elif(r==1):
             # 팔로워 배열속에서 랜덤한 팔로워 screen_name 뽑아내기
             screen_name = random.choice(self.fllower)
             sendEventCodeForUser("EVENTTWEETCODE02",screen_name,self.api)
