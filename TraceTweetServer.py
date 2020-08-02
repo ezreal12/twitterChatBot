@@ -15,7 +15,8 @@ consumer_secret="il2tiXlSztxy1Wyogx22eMIIr1ci8DTncHZEUQlVZgoUKP4K1n"
 # Create an access token under the the "Your access token" section
 access_token="1104054737324859392-zXRx7ak34w4FuHILaBoJQ5YLEDzsTi"
 access_token_secret="Km90CJMsp8NPaVnw2ecAKTlPywLtARC9HuYkr1fMpnV71"
-follwers=['1263315003370688513','937835196568571904']
+
+follwers=['1263315003370688513','937835196568571904','1269925774183677954','1277638923926175744','1278599063810633728']
 
 global api
 
