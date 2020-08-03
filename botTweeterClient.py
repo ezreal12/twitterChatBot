@@ -1,6 +1,7 @@
 from __future__ import absolute_import, print_function
 from tweepy import OAuthHandler, Stream, StreamListener
 from urllib3.exceptions import ProtocolError
+import sys
 import tweepy
 import TweetParser
 import botTweeterAPI
@@ -74,6 +75,10 @@ def startStreaming(stream,filtro):
             print(ProtocolError)
             print("------RESTART startStreaming  ----")
             continue
+        except KeyboardInterrupt:
+            print("------KeyboardInterrupt !! exit ----")
+            sys.exit()
+            return
         except BaseException:
             print("------ERROR startStreaming ----")
             print(BaseException)

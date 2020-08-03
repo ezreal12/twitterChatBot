@@ -1,6 +1,7 @@
 from __future__ import absolute_import, print_function
 from tweepy import OAuthHandler, Stream, StreamListener
 from urllib3.exceptions import ProtocolError
+import sys
 import TweetParser
 import tweepy
 import time
@@ -19,7 +20,7 @@ access_token_secret="Km90CJMsp8NPaVnw2ecAKTlPywLtARC9HuYkr1fMpnV71"
 follwers=[
     '1263315003370688513','937835196568571904','1269925774183677954','1277638923926175744','1278599063810633728',
     '1252761739600343042','1000676085682528256','1198266225136041984','1173183090971181056','1268294103223001088',
-    '1231626376660172800'
+    '1231626376660172800','2910186278'
 ]
 
 global api
@@ -39,6 +40,10 @@ def startStreaming(stream):
             print(ProtocolError)
             print("------RESTART ProtocolError Trace Streaming  ----")
             continue
+        except KeyboardInterrupt:
+            print("------KeyboardInterrupt !! exit ----")
+            sys.exit()
+            return
         except BaseException:
             print("------ERROR BaseException Trace Streaming ----")
             print(BaseException)
