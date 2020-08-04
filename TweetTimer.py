@@ -26,7 +26,7 @@ class TweetTimer:
         threading.Timer(self.timeSec,self.Task).start()
 
     def startTimerEvent(self):
-        r=random.randrange(0, 4)
+        r=random.randrange(0, 7)
         # 한국시간으로 새벽일경우 무조건 혼잣말을 함   즉, r=0
         kst = datetime.now(timezone('Asia/Seoul'))
         if(kst!=None and kst.hour!=None):
