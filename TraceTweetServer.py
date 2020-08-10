@@ -114,7 +114,7 @@ if __name__ == '__main__':
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth)
     # 초단위 / 1*60*60 = 1시간
-    timer = TmPJsonTimer.Timer(6*60*60)
+    timer = TmPJsonTimer.Timer(24*60*60)
 
     print("auth SET")
     stream = Stream(auth, l)
