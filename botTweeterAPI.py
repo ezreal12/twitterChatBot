@@ -21,9 +21,15 @@ import TweetParser
 # (중요) eventManager 가 있는경우 => (반드시) 유저가 이벤트가 없는 상태에서 말을해 이벤트가 발생할 가능성이 있는대화인경우.
 # 봇한테 보내는 메시지를 msg.text로 찾으려고 들지말것.
 def sendBotAndTweetRespone(api,text,msg=None,eventManager=None):
+    
     if text != "null":
         # 주의 : 임시로 포트번호 1023으로 바꿨음
         result = sendAndReceiveChatScriptMsg("Siu", "Sensiki", text, '127.0.0.1', 1023)
+        # 챗봇이 대답을 찾지못해 오류가 발생했을경우 오류에 매칭되는 대답을 듣기위해 한번 더 통신
+        if(result=="ANSERNOTFOUNDERROR"):
+            result2 = sendAndReceiveChatScriptMsg("Siu", "Sensiki", "ANSERNOTFOUNDRE", '127.0.0.1', 1023)
+            result = text+"||"+result2
+        
         # 이벤트 매니저가 파서에서 쓰이는 이유 : 봇이 뱉어낸 이벤트코드의 처리를 위해.
         if(msg!=None and eventManager!=None):
             result = TweetParser.parseBotScriptProtocol(result,name=msg.name,eventManager=eventManager,screen_name=msg.screen_name)

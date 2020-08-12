@@ -140,7 +140,7 @@ u: () # main per-sentence processing
 	if (%response == $_responseCount)  # 어떻게 든 사용자에게 할 말을 찾지 못했습니다.
 	{
 		 ^repeat() 
-         100024 오류 : 데이터베이스에 명령이 존재하지 않습니다.
+         ANSERNOTFOUNDERROR
 	}
 
 

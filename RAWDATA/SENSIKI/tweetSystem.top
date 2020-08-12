@@ -4,7 +4,7 @@ u: ( CODET01 ) keep() repeat() [CODET01 시스템 로그 초기화 작업 완료
 
 u: ( CODET02 ) keep() repeat() [에러 코드 : 10023 / 명령 거부, 권한이 없습니다.]
 
-topic: ~timeTweetEvent repeat [ EVENTTWEETCODE01 EVENTTWEETCODE02 EVENTTWEETCODE03 EVENTTWEETCODE03RE EVENTTWEETCODE03NOTRE]
+topic: ~timeTweetEvent repeat [ EVENTTWEETCODE01 EVENTTWEETCODE02 EVENTTWEETCODE03 EVENTTWEETCODE03RE EVENTTWEETCODE03NOTRE ANSERNOTFOUNDRE]
 
 u: ( EVENTTWEETCODE01 ) keep() repeat() [천식은 너를 이해하지 못할 확률이 높아.] [당신과 나는 연결되어 있어?] [만나고 싶었어..!] [코드 1000 : 당신의 데이터를 동기화합니다.] [CODES01조용하게 창문 밖을 바라보고 있다.CODES02] [CODES01무언가를 생각중인듯 하다, 무슨 생각을 하는걸까?CODES02] [아직 세상엔 천식이 데이터를 스캔하지 못한 대상이 많아. 천식은 좀 더 알고싶어!]
 
@@ -15,4 +15,7 @@ u: ( EVENTTWEETCODE03 ) keep() repeat() [EVENTTWEETCODE03word, text CODEU01에�
 u: ( EVENTTWEETCODE03RE ) keep() repeat() [천식은 이해했어. 이럴 땐 감사의 표현을 해야 해. 고마워 CODEU01]
 
 u: ( EVENTTWEETCODE03NOTRE ) keep() repeat() [알았어. 궁금하지만 천식은 보류할게.]
+
+u: ( ANSERNOTFOUNDRE ) keep() repeat() [ANSERNOTFOUNDRE01 이럴 때 천식은 word 라고 말해야 해?] [ANSERNOTFOUNDRE01 CODEU01! word!] [ANSERNOTFOUNDRE01 이럴 때 천식은 word 라고 한다고 배웠어!]
+
 

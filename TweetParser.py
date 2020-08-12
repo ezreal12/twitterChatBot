@@ -1,6 +1,7 @@
 import MeCabUtil
 import TraceDataManager
 import random
+import SocketSendModule
 def encodeTweetData(data):
     try:
         data = data.encode('utf-8')
@@ -56,6 +57,20 @@ def parseEventCode(data, eventManager, screen_name):
     elif "EVENTSAD1" in data:
         data = data.replace("EVENTSAD1", "")
         eventManager.addEvent(screen_name, "EVENTSAD1")
+    elif "ANSERNOTFOUNDRE01" in data:
+        # 사용자가 원래 했던 답 || 봇이 대답한 답  이 묶여서 나올텐데 이걸 나눠서 
+        # 사용자가 원래 했던 답은 딥러닝 챗봇한테 보내고 봇이 대답한 답을 파싱해서 치환
+        resultArr = data.split("||")
+        resultArr[1] = resultArr[1].replace("ANSERNOTFOUNDRE01", "")
+        # 1. 소켓과 통신해서 답신 가져오기
+        reple = SocketSendModule.sendMessage(resultArr[0])
+        # 2. word를 답신으로 치환하기
+        if(reple!=None):
+            data = resultArr[1].replace("word", reple)
+        else:
+            # 3. 만약 답신이 None이면 서버와의 에러 발생으로 텍스트 변경
+            data = "서버 통신 에러 발생. 긴급 조치를 요청합니다."
+
     #addEvent(self,screen_name, event_code,value=None):
     #EVENTTWEETCODE03 일때 처리하기
     elif "EVENTTWEETCODE03" in data:
