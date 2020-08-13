@@ -14,7 +14,7 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.core.lightning import LightningModule
 from torch.utils.data import DataLoader, Dataset
 from transformers.optimization import AdamW, get_cosine_schedule_with_warmup
-
+import re
 import SocketModule
 
 
@@ -208,6 +208,8 @@ class KoGPT2Chat(LightningModule):
 
     # 텍스트 메시지 q를 넘겨받아 챗봇의 답장 리턴하기
     def getReply(self,q):
+        #전처리 작업 (특수기호 제거 등)
+        q = clean_str(q)
         q_tok = self.tok(q)
         a = ''
         a_tok = []
@@ -227,7 +229,19 @@ class KoGPT2Chat(LightningModule):
             a_tok = self.tok(a)
         return a.strip()
 
-
+#전처리 함수
+def clean_str(text):
+    pattern = '([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)' # E-mail제거
+    text = re.sub(pattern=pattern, repl='', string=text)
+    pattern = '(http|ftp|https)://(?:[-\w.]|(?:%[\da-fA-F]{2}))+' # URL제거
+    text = re.sub(pattern=pattern, repl='', string=text)
+    pattern = '([ㄱ-ㅎㅏ-ㅣ]+)'  # 한글 자음, 모음 제거
+    text = re.sub(pattern=pattern, repl='', string=text)
+    pattern = '<[^>]*>'         # HTML 태그 제거
+    text = re.sub(pattern=pattern, repl='', string=text)
+    pattern = '[^\w\s]'         # 특수기호제거
+    text = re.sub(pattern=pattern, repl='', string=text)
+    return text
 
 parser = KoGPT2Chat.add_model_specific_args(parser)
 parser = Trainer.add_argparse_args(parser)
