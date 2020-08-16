@@ -29,5 +29,7 @@ def sendMessage(text):
 
 
 if __name__ == "__main__":
-    msg = sendMessage("밖에 공사하는게 너무 시끄러워")
+    #text = "밖에 공사하는게 너무 시끄러워"
+    text = '\n\n응!'
+    msg = sendMessage(text)
     print(msg)

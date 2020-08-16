@@ -16,7 +16,7 @@ from torch.utils.data import DataLoader, Dataset
 from transformers.optimization import AdamW, get_cosine_schedule_with_warmup
 import re
 import SocketModule
-
+import sys
 
 parser = argparse.ArgumentParser(description='Simsimi based on KoGPT-2')
 
@@ -241,7 +241,30 @@ def clean_str(text):
     text = re.sub(pattern=pattern, repl='', string=text)
     pattern = '[^\w\s]'         # 특수기호제거
     text = re.sub(pattern=pattern, repl='', string=text)
+    text = text.replace("\n"," ")
+    #공백 문자 제거했을때 글자수가 1 이하라도 문제가됨.
+    sampleText = text.replace(" ","")
+    # 1글자면 무한루프 도는 에러가있어서 1자리 대답은 응,네 등이라고 보고 비슷ㅎ한 말 리턴
+    if(len(text)<=1 or len(sampleText)<=1):
+        text = "그래"
     return text
+
+#예외발생시 처리용
+def startServer():
+    while True:
+        try:
+            model = KoGPT2Chat.load_from_checkpoint(args.model_params)
+            model.chat()
+        except KeyboardInterrupt:
+            print("------KeyboardInterrupt !! exit ----")
+            sys.exit()
+            return
+        except BaseException:
+            print("------ERROR BaseException deep server Streaming ----")
+            print(BaseException)
+            print("------RESTART BaseException deep server Streaming  ----")
+            continue
+
 
 parser = KoGPT2Chat.add_model_specific_args(parser)
 parser = Trainer.add_argparse_args(parser)
@@ -267,5 +290,4 @@ if __name__ == "__main__":
         trainer.fit(model)
         logging.info('best model path {}'.format(checkpoint_callback.best_model_path))
     if args.chat:
-        model = KoGPT2Chat.load_from_checkpoint(args.model_params)
-        model.chat()
+        startServer()
