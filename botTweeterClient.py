@@ -11,13 +11,13 @@ import FllowerManager
 import EventManager
 # Go to http://apps.twitter.com and create an app.
 # The consumer key and secret will be generated for you after
-consumer_key="C7LW1zGfBPdBEPuMZI8skPwKB"
-consumer_secret="il2tiXlSztxy1Wyogx22eMIIr1ci8DTncHZEUQlVZgoUKP4K1n"
+consumer_key="48wXip49Ts8Voe6L1IMizy1ZS"
+consumer_secret="rqz8REwXKPUF1KFtWzRFywlpDbFx7HD2PRaZoPPiucFY1c2k3Q"
 
 # After the step above, you will be redirected to your app's page.
 # Create an access token under the the "Your access token" section
-access_token="1104054737324859392-zXRx7ak34w4FuHILaBoJQ5YLEDzsTi"
-access_token_secret="Km90CJMsp8NPaVnw2ecAKTlPywLtARC9HuYkr1fMpnV71"
+access_token="1104054737324859392-5sUpE6jyoNNOW77fnKQqTP5bscBBtQ"
+access_token_secret="zCZbavk6YlerTk449FCJQuORnKyk45jxvT5B4xVGBLZdb"
 
 #관리자 트위터 ID
 admin_screen_name = "Dev_test_siuKim"

@@ -9,13 +9,13 @@ import TraceDataManager
 import TmPJsonTimer
 # Go to http://apps.twitter.com and create an app.
 # The consumer key and secret will be generated for you after
-consumer_key="C7LW1zGfBPdBEPuMZI8skPwKB"
-consumer_secret="il2tiXlSztxy1Wyogx22eMIIr1ci8DTncHZEUQlVZgoUKP4K1n"
+consumer_key="48wXip49Ts8Voe6L1IMizy1ZS"
+consumer_secret="rqz8REwXKPUF1KFtWzRFywlpDbFx7HD2PRaZoPPiucFY1c2k3Q"
 
 # After the step above, you will be redirected to your app's page.
 # Create an access token under the the "Your access token" section
-access_token="1104054737324859392-zXRx7ak34w4FuHILaBoJQ5YLEDzsTi"
-access_token_secret="Km90CJMsp8NPaVnw2ecAKTlPywLtARC9HuYkr1fMpnV71"
+access_token="1104054737324859392-5sUpE6jyoNNOW77fnKQqTP5bscBBtQ"
+access_token_secret="zCZbavk6YlerTk449FCJQuORnKyk45jxvT5B4xVGBLZdb"
 
 follwers=[
     '1296394912611540993','937835196568571904','1269925774183677954','1295744431811776514','1000676085682528256','1198266225136041984','1173183090971181056','1268294103223001088',
