@@ -259,9 +259,9 @@ def startServer():
             print("------KeyboardInterrupt !! exit ----")
             sys.exit()
             return
-        except BaseException:
+        except BaseException as e:
             print("------ERROR BaseException deep server Streaming ----")
-            print(BaseException)
+            print(e)
             print("------RESTART BaseException deep server Streaming  ----")
             continue
 

@@ -1,6 +1,6 @@
 import socket
 
-HOST, PORT = "54.180.149.22", 3000
+HOST, PORT = "13.125.213.62", 9082
 BUF_SIZE = 1024
 TIMEOUT_SEC = 15
 RETRY_LIMIT = 2
@@ -29,7 +29,7 @@ def sendMessage(text):
 
 
 if __name__ == "__main__":
-    #text = "밖에 공사하는게 너무 시끄러워"
-    text = '\n\n응!'
+    text = "밖에 공사하는게 너무 시끄러워"
+    #text = '\n\n응!'
     msg = sendMessage(text)
     print(msg)

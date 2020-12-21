@@ -2,7 +2,7 @@ import socket
 # 통신 정보 설정
 # 빈값을 넣으면 IP 상관없이 모든 인터페이스와 연결
 IP = ''
-PORT = 3000
+PORT = 9082
 SIZE = 1024
 ADDR = (IP, PORT)
 TIMEOUT_SEC = 15
