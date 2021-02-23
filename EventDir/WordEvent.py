@@ -4,7 +4,7 @@ import MeCabUtil
 import TraceDataManager
 
 
-no_answer=["아니","아냐","아니야","안할래","안 할래","말못해","말 못해"]
+no_answer=["안할래","안 할래","말못해","말 못해"]
 
 # 입력받은 word의 text를 json에 저장하고 답장하기
 # value엔 word 데이터(word['word','cnt','text(값은 없을것임)'] 1개가 들어있음.
