@@ -11,6 +11,7 @@ import FllowerManager
 import EventManager
 # Go to http://apps.twitter.com and create an app.
 # The consumer key and secret will be generated for you after
+# 트위터 dev에서 APP 없어진거 확인함. 이제 깃헙에 API키 안올리게 조심할것
 consumer_key="48wXip49Ts8Voe6L1IMizy1ZS"
 consumer_secret="rqz8REwXKPUF1KFtWzRFywlpDbFx7HD2PRaZoPPiucFY1c2k3Q"
 
